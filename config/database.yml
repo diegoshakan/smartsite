@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: <%= ENV['USERNAMEDB'] %>
+  password: <%= ENV['PASSWORDDB'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: smartsite_development
+
+test:
+  <<: *default
+  database: smartsite_test
+
+production:
+  <<: *default
+  database: smartsite_production
+  username: smartsite
+  password: <%= ENV["SMARTSITE_DATABASE_PASSWORD"] %>
