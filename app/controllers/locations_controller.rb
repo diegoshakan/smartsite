@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @q = Location.ransack(params[:q])
+    @q = Location.includes(:schedules).ransack(params[:q])
     @locations = @q.result(distinct: true)
   end
 

@@ -6,4 +6,8 @@ class Location < ApplicationRecord
   def self.ransackable_attributes(_auth_object = nil)
     %w[content fountain locker_room mask opened title towel]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["schedules"]
+  end
 end
