@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "locations#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :schedules
+  resources :locations
+
+  get "search", to: "locations#search"
 end

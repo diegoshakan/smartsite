@@ -3,7 +3,7 @@ class CreateSchedules < ActiveRecord::Migration[7.0]
     create_table :schedules do |t|
       t.string :week_days
       t.string :hour
-      t.references :location
+      t.references :location, null: false, foreign_key: true
 
       t.timestamps
     end

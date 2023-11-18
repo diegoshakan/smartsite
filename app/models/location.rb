@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
   has_many :schedules, dependent: :destroy
 
-  validates :title, :content, :opened, :mask, :towel, :fountain, :locker_room, presence: true
+  accepts_nested_attributes_for :schedules, allow_destroy: true
 end

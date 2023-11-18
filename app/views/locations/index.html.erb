@@ -1,0 +1,28 @@
+<%= form_with(url: search_url, method: :get) do |form| %>
+  <%= form.radio_button :hour, "06:00 às 12:00", checked: true %>
+  <%= form.label :manhã %>
+  <%= form.radio_button :hour, "12:01 às 18:00" %>
+  <%= form.label :tarde %>
+  <%= form.radio_button :hour, "18:01 às 23:00" %>
+  <%= form.label :noite %>
+
+  <%= form.check_box :opened %>
+  <%= form.label :opened, "Mostrar Fechadas" %>
+
+  <%= form.submit "Pesquisar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+<% end %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Locations</h1>
+    <%= link_to "New location", new_location_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="locations" class="min-w-full">
+    <%= render @locations %>
+  </div>
+</div>
