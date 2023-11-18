@@ -1,20 +1,16 @@
-<%= search_form_for @q, url: locations_path do |f| %>
+<%= form_with(url: search_url, method: :get) do |form| %>
+  <%= form.radio_button :hour, "06:00 às 12:00", checked: true %>
+  <%= form.label :manhã %>
+  <%= form.radio_button :hour, "12:01 às 18:00" %>
+  <%= form.label :tarde %>
+  <%= form.radio_button :hour, "18:01 às 23:00" %>
+  <%= form.label :noite %>
 
-  <%= f.label :manhã %>
-  <%= f.radio_button :schedules_hour_cont, "06h às 12h" %>
+  <%= form.check_box :opened %>
+  <%= form.label :opened, "Mostrar Fechadas" %>
 
-  <%= f.label :tarde %>
-  <%= f.radio_button :schedules_hour_cont, "12:01h às 18h" %>
-
-  <%= f.label :noite %>
-  <%= f.radio_button :schedules_hour_cont, "18:01h às 23h" %>
-
-  <%= f.check_box :opened_eq %>
-  <%= f.label :open, "Exibir unidades fechadas" %>
-
-  <%= f.submit %>
+  <%= form.submit "Pesquisar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 <% end %>
-<!-- http://localhost:3000/locations?q%5Btitle_or_content_cont%5D=parn&commit=Search -->
 
 <div class="w-full">
   <% if notice.present? %>

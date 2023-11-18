@@ -2,8 +2,13 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @q = Location.includes(:schedules).ransack(params[:q])
-    @locations = @q.result(distinct: true)
+    @locations = LocationQuery.index
+  end
+
+  def search
+    @locations = LocationsServices::Search.new(params).call
+
+    render 'index'
   end
 
   def show; end
@@ -52,20 +57,20 @@ class LocationsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find(params[:id])
+    @location = Location.find(hour[:id])
   end
 
   def location_params
-    params.require(:location).permit(:title,
-                                     :content,
-                                     :opened,
-                                     :mask,
-                                     :towel,
-                                     :fountain,
-                                     :locker_room,
-                                     schedule_attributes: %i[
-                                       week_days
-                                       hour
-                                     ])
+    hour.require(:location).permit(:title,
+                                   :content,
+                                   :opened,
+                                   :mask,
+                                   :towel,
+                                   :fountain,
+                                   :locker_room,
+                                   schedule_attributes: %i[
+                                     week_days
+                                     hour
+                                   ])
   end
 end
