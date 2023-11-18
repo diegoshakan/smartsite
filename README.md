@@ -1,24 +1,14 @@
-# README
+# SmartSite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Sobre
+Aplicativo de busca, elaborado com RoR, permitindo buscar academias por horários de funcionamento, tendo como paramêtros horário e/ou academia aberta.
 
-Things you may want to cover:
+## Rodando o Projeto Localmente
+Clone o repositório: $ git clone git@github.com:diegoshakan/smartsite.git
 
-* Ruby version
+Após adentrar a pasta do projeto, rode o **$ bundle install** (Verificando sua versão do Ruby).
 
-* System dependencies
+Rode o seguinte comando para criar o banco de dados e migrar as informações: **$ rails db:create db:migrate**
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Testes - Rspec
+Rode no terminal: **$ rspec**

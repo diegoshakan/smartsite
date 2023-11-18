@@ -57,11 +57,11 @@ class LocationsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find(hour[:id])
+    @location = Location.find(params[:id])
   end
 
   def location_params
-    hour.require(:location).permit(:title,
+    params.require(:location).permit(:title,
                                    :content,
                                    :opened,
                                    :mask,

@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :schedule do
-    week_days { "MyString" }
-    hour { "MyString" }
-    location { nil }
+    week_days { "Seg. a Sex." }
+    hour { "06h às 22h" }
+
+    association :location
   end
 end
