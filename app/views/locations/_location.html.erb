@@ -1,42 +1,44 @@
-<div id="<%= dom_id location %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= location.title %>
-  </p>
+<div class="max-w-sm w-full lg:max-w-full lg:flex mb-6">
+  <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/img/card-left.jpg')" title="Woman holding a mug">
+  </div>
+  <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+    <div class="mb-8">
+      <p class="text-sm text-gray-600 flex items-center">
+        <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+        </svg>
+        <%= location.opened? %>
+      </p>
+      <div class="text-gray-900 font-bold text-xl mb-2"> <%= location.title %> </div>
+      <p class="text-gray-700 text-base"><%= location.content %></p>
+    </div>
+    <div class="flex items-center">
+      <% if location.mask.include?("required") %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/required-mask.png?raw=true">
+      <% else %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/recommended-mask.png?raw=true">
+      <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= location.content %>
-  </p>
+      <% if location.mask.include?("required") %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/required-towel.png?raw=true">
+      <% else %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/recommended-towel.png?raw=true">
+      <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Opened:</strong>
-    <%= location.opened %>
-  </p>
+      <% if location.fountain.include?("partial") %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/partial-fountain.png?raw=true">
+      <% else %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/forbidden-fountain.png?raw=true">
+      <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Mask:</strong>
-    <%= location.mask %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Towel:</strong>
-    <%= location.towel %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fountain:</strong>
-    <%= location.fountain %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Locker room:</strong>
-    <%= location.locker_room %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this location", location, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this location", edit_location_path(location), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+      <% case location.locker_room %>
+      <% when "allowed" %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/required-lockerroom.png?raw=true">
+      <% when "partial" %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/partial-lockerroom.png?raw=true">
+      <% when "closed" %>
+        <img class="w-10 h-10 rounded-full mr-4" src="https://github.com/bioritmo/front-end-code-challenge-smartsite/blob/master/_material/images/forbidden-lockerroom.png?raw=true">
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -1,28 +1,43 @@
-<%= form_with(url: search_url, method: :get) do |form| %>
-  <%= form.radio_button :hour, "06:00 às 12:00", checked: true %>
-  <%= form.label :manhã %>
-  <%= form.radio_button :hour, "12:01 às 18:00" %>
-  <%= form.label :tarde %>
-  <%= form.radio_button :hour, "18:01 às 23:00" %>
-  <%= form.label :noite %>
 
-  <%= form.check_box :opened %>
-  <%= form.label :opened, "Mostrar Fechadas" %>
+<div class="flex flex-wrap">
+  <%= form_with(url: search_url, method: :get, class: "w-full max-w-sm") do |form| %>
+    <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+            <div class="flex items-center ps-3">
+                <%= form.radio_button :hour, "06:00 às 12:00", checked: true, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"%>
+                <%= form.label :manhã %>
+            </div>
+        </li>
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+            <div class="flex items-center ps-3">
+                <%= form.radio_button :hour, "12:01 às 18:00", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+                <%= form.label :tarde %>
+            </div>
+        </li>
+        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+            <div class="flex items-center ps-3">
+              <%= form.radio_button :hour, "18:01 às 23:00", class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+              <%= form.label :noite %>
+            </div>
+        </li>
+        <li class="w-full dark:border-gray-600">
+            <div class="flex items-center ps-3">
+              <%= form.check_box :opened, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+              <%= form.label :opened, "Mostrar Fechadas", class: "ms-2 text-sm font-medium" %>
+            </div>
+        </li>
+    </ul>
 
-  <%= form.submit "Pesquisar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-<% end %>
-
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <%= form.submit "Pesquisar", class: "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Locations</h1>
-    <%= link_to "New location", new_location_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
+  <div class="w-full">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
 
-  <div id="locations" class="min-w-full">
-    <%= render @locations %>
+    <div id="locations" class="min-w-full">
+      <%= render @locations %>
+    </div>
   </div>
 </div>

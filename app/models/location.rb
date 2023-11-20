@@ -4,4 +4,8 @@ class Location < ApplicationRecord
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
   validates :title, :content, presence: true
+
+  def opened?
+    opened ? "Aberto" : "Fechado"
+  end
 end
